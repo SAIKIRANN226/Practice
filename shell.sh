@@ -33,6 +33,7 @@ do
     if [ $? -ne 0 ]
     then 
         yum install $package -y &>> /tmp/saikiran.logs
+        VALIDATE $? "Installation of $package"
     else
         echo -e "$package is already installed so $Y.....SKIPPING $N"
     fi 
