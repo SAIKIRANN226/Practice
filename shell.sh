@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCE_DIR=$(saikiran-logs)
+SOURCE_DIR="/tmp/saikiran-logs"
 
 R="\e[31m"
 G="\e[32m"
