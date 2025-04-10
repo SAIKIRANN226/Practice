@@ -32,7 +32,7 @@ do
     yum list installed $package
     if [ $? -ne 0 ]
     then 
-        yum install $package -y
+        yum install $package -y &>> /tmp/saikiran.logs
     else
         echo -e "$package is already installed so $Y.....SKIPPING $N"
     fi 
