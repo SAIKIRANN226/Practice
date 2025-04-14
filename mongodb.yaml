@@ -2,10 +2,15 @@
   hosts: mongodb
   become: yes
   tasks:
-  - name: Copying mongodb repo file
+  - name: Copy MongoDB repo file
     ansible.builtin.copy:
-    src: /home/centos/Practice/mongodb.repo
-    dest: /etc/yum.repos.d/mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+      content: |
+         [mongodb-org-4.2]
+         name=MongoDB Repository
+         baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+         gpgcheck=0
+         enabled=1
 
   - name: mongodb-org
     ansible.builtin.dnf:
