@@ -9,8 +9,8 @@
     ansible.builtin.command: dnf module enable nodejs:18 -y
 
   - name: Installing nodejs
-    ansible.builtin.package:
-      name: dnf install nodejs
+    ansible.builtin.dnf:
+      name: nodejs
       state: present
 
   - name: Check if roboshop user exists
