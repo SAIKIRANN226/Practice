@@ -1,8 +1,21 @@
-- name: variables concept
+- name: conditions 
   hosts: localhost
+  become: yes
   tasks:
-  - name: Play1
-    ansible.builtin.debug:
-      msg: echo "hello saikiran how are you"
+  - name: Creating roboshop user
+    ansible.builtin.command: id roboshop
+    register: user
+    ignore_errors: true
 
-- name: varibales from 
+  - name: print variable value
+    ansible.builtin.debug:
+      msg: "User output is: {{user}}"
+  
+  - name: print exit status or return code
+    ansible.builtin.debug:
+      msg: "status is: {{user.rc}}"
+
+  - name: create user
+    ansible.builtin.user:
+      name: roboshop
+    when: user.rc != 0
