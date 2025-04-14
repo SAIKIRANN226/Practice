@@ -4,13 +4,9 @@
   tasks:
   - name: Disable default Node.js module
     ansible.builtin.command: dnf module disable nodejs -y
-    args:
-      warn: false
 
   - name: Enable Node.js 18 module
     ansible.builtin.command: dnf module enable nodejs:18 -y
-    args:
-      warn: false
 
   - name: Installing nodejs
     ansible.builtin.package:
