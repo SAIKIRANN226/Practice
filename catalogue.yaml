@@ -18,6 +18,7 @@
       database: passwd
       key: roboshop
     register: roboshop_user
+    ignore_errors: true
 
   - name: Create roboshop user if not exists
     ansible.builtin.user:
