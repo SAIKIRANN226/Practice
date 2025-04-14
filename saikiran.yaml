@@ -1,12 +1,8 @@
-- name: Nginx
-  become: yes
-  hosts: web
+- name: variables concept
+  hosts: localhost
   tasks:
-  - name: Installing nginx
-    ansible.builtin.package:
-      name: nginx
-      state: present
-  - name: running the nginx
-    ansible.builtin.service:
-      name: nginx
-      state: started
+  - name: Play1
+    ansible.builtin.debug:
+      msg: echo "hello saikiran how are you"
+
+- name: varibales from 
