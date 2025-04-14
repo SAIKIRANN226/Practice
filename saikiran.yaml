@@ -1,5 +1,12 @@
-- name: Pinging the node server
+- name: Nginx
+  become: yes
   hosts: localhost
   tasks:
-  - name: Ping the server
-    ansible.builtin.ping:
+  - name: Installing nginx
+    ansible.builtin.package:
+      name: nginx
+      state: present
+  - name: running the nginx
+    ansible.builtin.service:
+      name: nginx
+      state: started
