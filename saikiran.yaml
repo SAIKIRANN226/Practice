@@ -1,21 +1,21 @@
-- name: conditions 
+- name: conditions
   hosts: localhost
   become: yes
   tasks:
-  - name: Creating roboshop user
+  - name: creating roboshop user
     ansible.builtin.command: id roboshop
     register: user
     ignore_errors: true
 
   - name: print variable value
     ansible.builtin.debug:
-      msg: "User output is: {{user}}"
-  
-  - name: print exit status or return code
-    ansible.builtin.debug:
-      msg: "status is: {{user.rc}}"
+      msg: "the output of user is {{user}}"
 
-  - name: create user
+  - name: status
+    ansible.builtin.debug:
+      msg: "status of the user is {{user.rc}}"
+
+  - name: Create user with when condition
     ansible.builtin.user:
-      name: roboshop
-    when: user.rc != 0
+      name: roboshop user
+    when: user.rc!=0
