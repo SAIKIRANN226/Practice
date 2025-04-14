@@ -1,0 +1,30 @@
+- name: mongodb-component
+  hosts: mongodb
+  become: yes
+  tasks:
+  - name: Copying mongodb repo file
+    ansible.builtin.copy:
+    src: /mongodb.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+  - name: mongodb-org
+    ansible.builtin.dnf:
+      name: mongodb-org
+      state: present
+
+  - name: enabling and starting mongodb
+    ansible.builtin.service:
+      name: mongodb
+      enabled: yes
+      state: started
+
+  - name: Update bindIp to allow remote access using replace module
+    ansible.builtin.replace:
+      path: /etc/mongod.conf
+      regexp: '^(\s*)bindIp:\s*127\.0\.0\.1'
+      replace: '\1bindIp: 0.0.0.0'
+
+  - name: Restarting mongodb
+    ansible.builtin.service:
+      name: mongodb
+      state: restarted
