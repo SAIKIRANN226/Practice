@@ -18,12 +18,11 @@
       state: present
 
   - name: enabling and starting mongodb
-    ansible.builtin.service:
+    ansible.builtin.systemd:
       name: mongodb
       state: started
       enabled: yes
       
-
   - name: Update bindIp to allow remote access using replace module
     ansible.builtin.replace:
       path: /etc/mongod.conf
