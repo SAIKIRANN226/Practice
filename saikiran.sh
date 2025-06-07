@@ -1,41 +1,41 @@
 #!/bin/bash
 
 ID=$(id -u)
-DATE=$(date)
-
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+DATE=$(date)
+LOGFILE="/tmp/saikiran.log"
+
 VALIDATE() {
     if [ $1 -ne 0 ]
     then 
-        echo -e "$2....$R FAILED $N"
-        exit 12
-    else 
-        echo -e "$2....$G SUCCESS $N"
+        echo -e "$2......$R FAILED $N"
+        exit 1
+    else
+        echo -e "$2.....$G SUCCESS $N"
     fi 
 }
-
 
 if [ $ID -ne 0 ]
 then 
     echo -e "$R ERROR:: Please run the script with root user $N"
-    exit 232
+    exit 1
 else
     echo -e "$Y Script started executing at $DATE $N"
 fi 
 
 
-for package in $@
+for software in $@ 
 do 
-    yum list installed $package
+    yum list installed $software &>> $LOGFILE
     if [ $? -ne 0 ]
     then 
-        yum install $package -y &>> /tmp/saikiran.output
-        VALIDATE $? "Installing $package"
+        yum install $software -y &>> $LOGFILE
+        VALIDATE $? "Installing $software"
     else
-        echo -e "$package is already installed so $Y.....SKIPPING $N"
-    fi 
+        echo -e "$software is already installed $Y.....So skipping $N"
+    fi
 done
