@@ -16,4 +16,4 @@ echo "the status of the above command is $status"
 
 foldercreation=$(mkdir sam)
 
-echo "folder is created in tmp directory $foldercreation" > /tmp
+echo "folder is created in tmp directory $foldercreation" > /tmp/sai.output
