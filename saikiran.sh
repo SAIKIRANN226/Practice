@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$ID=(id -u)
+ID=$(id -u)
 DATE=$(date)
 
 R="\e[31m"
