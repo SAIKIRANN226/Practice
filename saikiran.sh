@@ -1,20 +1,39 @@
-#!/bin/bash 
+#!/bin/bash
+
+$ID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
 DATE=$(date)
 
-echo "Todays date is $DATE"
+Saikiran() {
+    if [ $1 -ne 0 ]
+    then 
+        echo -e "$2.....$R FAILED $N"
+        exit 1
+    else
+        echo -e "$2....$G SUCCESS $N"
+    fi 
+}
 
-result=$(ls -la)
 
-echo "Files including hidden $result" > /tmp/saikiran.output
 
-result=$(ls -ltr)
+if [ $ID -ne 0 ]
+then 
+    echo -e "$R ERROR:: Please run the script with root user $N"
+    exit 1
+else
+    echo -e "$Y Script started executing at $DATE $N"
+fi 
 
-echo "files timing wise $result" > /tmp/sai.output
+yum install nginx -y 
 
-status=$?
+Saikiran $? "Installing nginx"
 
-echo "the status of the above command is $status"
+yum install mysql -y
 
+Saikiran $? "Installing mysql"
 
 
