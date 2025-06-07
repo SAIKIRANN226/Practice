@@ -26,11 +26,11 @@ VALIDATE() {
     fi 
 }
 
-yum install nginx -y 
+yum install nginx -y &>> /tmp/nginx.output
 
 VALIDATE $? "Installing nginx"
 
-yum install mysql -y
+yum install mysql -y &>> /tmp/mysql.output
 
 VALIDATE $? "Installing mysql"
 
