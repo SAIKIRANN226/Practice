@@ -8,9 +8,9 @@ result=$(ls -la)
 
 echo "Files including hidden $result" > /tmp/saikiran.output
 
-saikiran=$(ls -ltr)
+result=$(ls -ltr)
 
-echo "files timing wise $saikiran" > /tmp/sai.output
+echo "files timing wise $result" > /tmp/sai.output
 
 status=$?
 
