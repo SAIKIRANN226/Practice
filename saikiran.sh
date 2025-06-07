@@ -4,6 +4,6 @@ DATE=$(date)
 
 echo "Todays date is $DATE"
 
-result=$(la -la)
+result=$(ls -la)
 
 echo "Files including hidden $result" > /tmp/saikiran.output
