@@ -14,4 +14,4 @@ status=$?
 echo "the status of the above command is $status"
 
 
-foldercreation=$(mkdir sam)
+saikiran=$(ls -ltr)
