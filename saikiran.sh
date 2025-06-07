@@ -15,3 +15,5 @@ echo "the status of the above command is $status"
 
 
 saikiran=$(ls -ltr)
+
+echo "files timing wise $saikiran" > /tmp/sai.output
