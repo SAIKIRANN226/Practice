@@ -1,24 +1,12 @@
 #!/bin/bash
 
 $ID=$(id -u)
+DATE=$(date)
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-
-DATE=$(date)
-
-Saikiran() {
-    if [ $1 -ne 0 ]
-    then 
-        echo -e "$2.....$R FAILED $N"
-        exit 1
-    else
-        echo -e "$2....$G SUCCESS $N"
-    fi 
-}
-
-
 
 if [ $ID -ne 0 ]
 then 
@@ -28,12 +16,22 @@ else
     echo -e "$Y Script started executing at $DATE $N"
 fi 
 
+VALIDATE() {
+    if [ $1 -ne 0 ]
+    then 
+        echo -e "$2.....$R FAILED $N"
+        exit 1
+    else
+        echo -e "$2....$G SUCCESS $N"
+    fi 
+}
+
 yum install nginx -y 
 
-Saikiran $? "Installing nginx"
+VALIDATE $? "Installing nginx"
 
 yum install mysql -y
 
-Saikiran $? "Installing mysql"
+VALIDATE $? "Installing mysql"
 
 
