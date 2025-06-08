@@ -7,6 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 
 DATE=$(date)
+LOGFILE="/tmp/saikiran.output"
 
 VALIDATE() {
     if [ $1 -ne 0 ]
@@ -31,7 +32,7 @@ do
     yum list installed $package
     if [ $? -ne 0 ]
     then 
-        yum install $package -y
+        yum install $package -y &>> $LOGFILE
         VALIDATE $? "Installing $package"
     else
         echo -e "$package is already installed $Y......SKIPPING $N"
