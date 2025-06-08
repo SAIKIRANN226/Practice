@@ -8,35 +8,10 @@ N="\e[0m"
 
 DATE=$(date)
 
-LOGFILE="/tmp/saikiran.output"
-exec &>$LOGFILE
-
-VALIDATE() {
-    if [ $1 -ne 0 ]
-    then 
-        echo -e "$2.....$R FAILED $N"
-        exit 1
-    else
-        echo -e "$2.....$G SUCCESS $N"
-    fi 
-}
-
 if [ $ID -ne 0 ]
 then 
-    echo -e "$R ERORR:: Please run the script with root user $N"
+    echo -e "$R ERROR:: Please run the script with root user $N"
     exit 1
 else
     echo -e "$Y Script started executing at $DATE $N"
 fi 
-
-
-for package in $@
-do 
-    yum list installed $package
-    if [ $? -ne 0 ]
-    then 
-        yum install $package -y
-    else
-        echo -e "$package is already so $Y.....SKIPPING $N"
-    fi 
-done
