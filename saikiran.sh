@@ -6,9 +6,6 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOGFILE="/tmp/saikiran.output"
-exec &>$LOGFILE
-
 DATE=$(date)
 
 VALIDATE() {
