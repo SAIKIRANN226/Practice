@@ -1,40 +1,9 @@
 #!/bin/bash
 
-ID=$(id -u)
-R="\e[31m"
-G="\e[32m"
 Y="\e[33m"
-N="\e[0m"
 
-DATE=$(date)
-LOGFILE="/tmp/saikiran.output"
+LOG_DIR="/home/centos/log_folder/"
 
-VALIDATE() {
-    if [ $1 -ne 0 ]
-    then 
-        echo -e "$2....$R FAILED $N"
-        exit 1
-    else
-        echo -e "$2....$G SUCCESS $N"
-    fi 
-}
+find "$LOG_DIR" -type f -name "*.log" -mtime +14 -exec rm -f {} \;
 
-if [ $ID -ne 0 ]
-then 
-    echo -e "$R ERROR:: Please run the script with root user $N"
-    exit 1
-else
-    echo -e "$Y Script started executing at $DATE $N"
-fi
-
-for package in $@
-do 
-    yum list installed $package &>> $LOGFILE
-    if [ $? -ne 0 ]
-    then 
-        yum install $package -y &>> $LOGFILE
-        VALIDATE $? "Installing $package"
-    else
-        echo -e "$package is already installed $Y......SKIPPING $N"
-    fi
-done
+echo -e "$Y Old .log files older than 14 days have been deleted from $LOG_DIR. $N"
