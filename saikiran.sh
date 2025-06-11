@@ -17,7 +17,7 @@ else
 fi 
 
 
-FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime +14 -name "preethi" -exec rm -f {} \;)
+FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime +14 rm -f preethi*)
 
 echo -e "$G Successfully deleted old log files $N"
 
