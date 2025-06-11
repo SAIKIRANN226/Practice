@@ -4,25 +4,26 @@ AMI_ID="ami-0b4f379183e5706b9"         # ✅ Put your AMI ID here (e.g., Amazon 
 SECURITY_GROUP="sg-062184d660bab16ba"  # ✅ Put your Security Group ID   # (optional, for VPC)
 
 # Define service list
+#!/bin/bash
+
+# Define the list of service names used for tagging
 SERVICES=("mongodb" "shipping" "web" "payment" "user")
 
 for SERVICE in "${SERVICES[@]}"; do
-  # Choose instance type based on service name
-  if [[ "$SERVICE" == "mongodb" || "$SERVICE" == "shipping" ]]; then
-    INSTANCE_TYPE="t3.small"
+  echo "Looking for instance with Name tag: $SERVICE..."
+
+  INSTANCE_IDS=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=$SERVICE" "Name=instance-state-name,Values=running,pending,stopped" \
+    --query "Reservations[*].Instances[*].InstanceId" \
+    --output text)
+
+  if [[ -n "$INSTANCE_IDS" ]]; then
+    echo "Terminating instances for $SERVICE: $INSTANCE_IDS"
+    aws ec2 terminate-instances --instance-ids $INSTANCE_IDS
   else
-    INSTANCE_TYPE="t2.micro"
+    echo "No instances found for $SERVICE."
   fi
-
-  echo "Launching $SERVICE with instance type $INSTANCE_TYPE..."
-
-  # Create instance
-  aws ec2 run-instances \
-    --image-id "$AMI_ID" \
-    --instance-type "$INSTANCE_TYPE" \
-    --security-group-ids "$SECURITY_GROUP" \
-    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$SERVICE}]" \
-    --count 1
 done
+
 
 
