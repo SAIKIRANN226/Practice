@@ -17,8 +17,8 @@ else
 fi 
 
 
-find $SOURCE_DIR -type f -mtime +14
-rm sample1
+find "$SOURCE_DIR" -type f -name "sample1" -mtime +14 -exec rm -f {} \;
+
 
 echo -e "$G Successfully deleted old log files $N"
 
