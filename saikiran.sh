@@ -1,9 +1,23 @@
 #!/bin/bash
 
+R="\e[31m"
+G="\e[32m"
 Y="\e[33m"
+N="\e[0m"
 
-LOG_DIR="/home/centos/log_folder/"
 
-find "$LOG_DIR" -type f -name "sample" -mtime +14 -exec rm -f {} \;
+SOURCE_DIR="/tmp/sam-logs"
 
-echo -e "$Y Old .log files older than 14 days have been deleted from $LOG_DIR. $N"
+if [ ! -d $SOURCE_DIR ]
+then 
+    echo -e "$R Source directory does not exists $N"
+    exit 1
+else
+    echo -e "$Y Found source directory in tmp folder $N"
+fi 
+
+
+FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime+14 -name "*log" -exec rm -f {} \;)
+
+echo -e "$Y Successfully deleted old log files $N"
+
