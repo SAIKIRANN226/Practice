@@ -51,3 +51,22 @@
         name: catalogue
         state: started
         enabled: yes
+
+  - name: Copy mongodb.repo
+    ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+  - name: Install mongodb-org-shell
+    ansible.builtin.dnf:
+        name: mongodb-org-shell
+        state: present
+
+  - name: Load MongoDB schema
+    ansible.builtin.command: >
+        mongo --host {{ 172.31.24.199 }} < /app/schema/catalogue.js
+    args:
+        chdir: /app/schema
+    when: mongo_server_ip is defined
+
+  
