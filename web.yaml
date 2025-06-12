@@ -4,11 +4,11 @@
   tasks:
   - name: nginx
     ansible.builtin.dnf:
-      name: installing-nginx
+      name: installing-nginx,
       state: present
   - name: run nginx
     ansible.builtin.service:
-      name: run-nginx
+      name: run-nginx,
       state: started
       enabled: true
   - name: remove the nginx default content
