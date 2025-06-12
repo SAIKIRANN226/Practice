@@ -6,30 +6,35 @@
     ansible.builtin.package:
       name: nginx
       state: present
+
   - name: run
     ansible.builtin.service:
       name: nginx
       state: started
       enabled: true
+
   - name: remove the nginx default content
     file:
       path: /usr/share/nginx/html/*
       state: absent
-  - name: download the new code
-    ansible.builtin.get_url:
-      url: https://roboshop-builds.s3.amazonaws.com/web.zip
-      dest: /tmp/web.zip
+
   - name: create html directory
     ansible.builtin.file:
       path: /usr/share/nginx/html
       state: directory
+
+  - name: download the new code
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip
+      dest: /usr/share/nginx/html/web.zip
+ 
   - name: extract
     unarchive:
       src: /tmp/web.zip
       dest: /tmp/web.zip
       remote_src: yes
       list_files: yes
-    register: archive_contents
+
   - name: restart nginx
     ansible.builtin.service:
       name: restart nginx
