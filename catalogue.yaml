@@ -25,11 +25,11 @@
 
   - name: Download code
     ansible.builtin.get_url:
-    url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
-    dest: /tmp/
+        url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        dest: /tmp/
 
   - name: unzip
     ansible.builtin.unarchive:
-    src: /tmp/catalogue.zip
-    dest: /app
-    remote_src: yes
+        src: /tmp/catalogue.zip
+        dest: /app
+        remote_src: yes
