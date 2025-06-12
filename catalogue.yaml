@@ -20,8 +20,8 @@
   
   - name: Create an app directory
     ansible.builtin.file:
-    path: /app
-    state: directory
+        path: /app
+        state: directory
 
   - name: Download code
     ansible.builtin.get_url:
