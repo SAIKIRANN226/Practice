@@ -14,4 +14,21 @@
     ansible.builtin.command: dnf install nodejs -y
     become: yes
 
+  - name: Create a user roboshop
+    ansible.builtin.user:
+    name: roboshop
   
+  - name: Create an app directory
+    ansible.builtin.file:
+    state: directory
+
+  - name: Download code
+    ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+    dest: /tmp/
+
+  - name: unzip
+    ansible.builtin.unarchive:
+    src: /tmp/catalogue.zip
+    dest: /app
+    remote_src: yes
