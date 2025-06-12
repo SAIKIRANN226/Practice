@@ -3,8 +3,8 @@
   become: yes
   tasks:
   - name: nginx
-    ansible.builtin.dnf:
-      name: ngix
+    ansible.builtin.package:
+      name: nginx
       state: present
   - name: run
     ansible.builtin.service:
