@@ -62,11 +62,23 @@
         name: mongodb-org-shell
         state: present
 
-  - name: Load MongoDB schema
-    ansible.builtin.command: >
-        mongo --host {{ 172.31.24.199 }} < /app/schema/catalogue.js
-    args:
-        chdir: /app/schema
-    when: mongo_server_ip is defined
+  - name: get the categories count
+    ansible.builtin.command:  mongo --host mongodb.daws76s.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'  # ansible.builtin.command is nothing but running above big command in the server,take that command output in a register with a variable name(product_count)
+    register: product_count # The above large command is to get the catagories count and registering the product count in a variable register
+
+  - name: print the count
+    ansible.builtin.debug:
+      msg: "product count: {{product_count}}"
+
+  - name: load catalogue data
+    ansible.builtin.command: mongo --host 172.31.24.199 < /app/schema/catalogue.js
+    when: product_count.stdout == "0" # Keep double quotes that means if product count is "0" then only run and load the catagories otherwise ignore
+
+  - name: start and enable catalogue
+    ansible.builtin.service:
+      name: catalogue
+      state: restarted
+      enabled: yes
+
 
   
