@@ -63,7 +63,7 @@
         state: present
 
   - name: get the categories count
-    ansible.builtin.command:  mongo --host mongodb.daws76s.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'  # ansible.builtin.command is nothing but running above big command in the server,take that command output in a register with a variable name(product_count)
+    ansible.builtin.command:  mongo --host 172.31.24.199 --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'  # ansible.builtin.command is nothing but running above big command in the server,take that command output in a register with a variable name(product_count)
     register: product_count # The above large command is to get the catagories count and registering the product count in a variable register
 
   - name: print the count
