@@ -26,12 +26,12 @@
   - name: download the new code
     ansible.builtin.get_url:
       url: https://roboshop-builds.s3.amazonaws.com/web.zip
-      dest: /usr/share/nginx/html/web.zip
+      dest: /tmp
  
   - name: extract
     unarchive:
       src: /tmp/web.zip
-      dest: /tmp/web.zip
+      dest: /usr/share/nginx/html
       remote_src: yes
       list_files: yes
 
