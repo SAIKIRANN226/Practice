@@ -9,7 +9,7 @@
 
   - name: installing mongodb-org
     ansible.builtin.dnf:
-        name: mongod
+        name: mongodb.repo
         state: latest
 
   - name: enabling mongodb
