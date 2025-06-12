@@ -1,0 +1,17 @@
+- name: mongodb module
+  hosts: mongodb
+  become: yes
+  tasks:
+  - name: installing mongodb-org
+    ansible.builtin.dnf:
+        name: mongodb-org
+        state: latest
+  - name: enabling mongodb
+    ansible.builtin.service:
+        name: mongod
+        state: enabled
+  - name: starting mongodb
+    ansible.builtin.service:
+        name: mongod
+        state: started
+
