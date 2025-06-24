@@ -10,3 +10,7 @@
     ansible.builtin.service:
       name: nginx
       state: started
+  - name: install mysql
+    ansible.builtin.yum:
+      name: mysql
+      state: present
