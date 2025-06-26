@@ -33,7 +33,7 @@ do
     yum list installed $software
     if [ $? -ne 0 ]
     then 
-        yum install $software -y $>> $LOGFILE
+        yum install $software -y &>> $LOGFILE
         VALIDATE $? "Installing $software"
     else
         echo -e "$Y $software is already installed so....SKIPPING $N"
