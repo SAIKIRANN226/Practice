@@ -1,6 +1,10 @@
 #!/bin/bash
 
-fruits=("mango" "lassi" "preethi" "grapes")
+number=$1
 
-echo "first value:: ${fruits[2]}"
-echo "all values:: ${fruits[@]}"
+if [ $number gt 100 ]
+then 
+    echo "Given number is greater than 100"
+else
+    echo "Given number is lessthan 100"
+fi
