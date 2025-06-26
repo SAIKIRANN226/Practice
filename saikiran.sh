@@ -30,5 +30,5 @@ fi
 yum install git -y &>> $LOGFILE
 VALIDATE $? "Installing git"
 
-yum install mysql -y $>> $LOGFILE
+yum install mysql -y
 VALIDATE $? "Installing mysql"
