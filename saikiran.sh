@@ -8,20 +8,16 @@ N="\e[0m"
 
 DATE=$(date)
 
-if [ $ID -ne 0 ]
-then 
-    echo -e "$R ERROR:: Please run the script with root user $N"
-    exit 1
-else
-    echo -e "$Y Script started executing at $DATE $N"
-fi 
+VALIDATE() {
+    if [ $1 -ne 0 ]
+    then 
+        echo -e "$2......$R FAILED $N"
+        exit 1
+    else
+        echo -e "$2......$G SUCCESS $N"
+    fi 
+}
 
 
-yum install git -y 
-if [ $? -ne 0 ]
-then 
-    echo -e "$R Installing git is failed $N"
-    exit 1
-else
-    echo -e "$Y Installing git is success $N"
-fi
+yum install git -y
+VALIDATE $? "Installing git"
