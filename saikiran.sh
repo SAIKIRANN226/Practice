@@ -1,6 +1,6 @@
-#!/bin/bash
+#/bin/bash
 
-ID=$(id -u)
+ID=$(date)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -12,10 +12,10 @@ LOGFILE="/tmp/saikiran-logs"
 VALIDATE() {
     if [ $1 -ne 0 ]
     then 
-        echo -e "$2......$R FAILED $N"
+        echo -e "$2.....$R FAILED $N"
         exit 1
     else
-        echo -e "$2......$G SUCCESS $N"
+        echo -e "$2.....$G SUCCESS $N"
     fi 
 }
 
@@ -25,10 +25,17 @@ then
     exit 1
 else
     echo -e "$Y Script started executing at $DATE $N"
-fi
+fi 
 
-yum install git -y &>> $LOGFILE
-VALIDATE $? "Installing git"
 
-yum install mysql -y &>> $LOGFILE
-VALIDATE $? "Installing mysql"
+for software in $@
+do 
+    yum list installed $software
+    if [ $? -ne 0 ]
+    then 
+        yum install $software -y $>> $LOGFILE
+        VALIDATE $? "Installing $software"
+    else
+        echo -e "$Y $software is already installed so....SKIPPING $N"
+    fi
+done
