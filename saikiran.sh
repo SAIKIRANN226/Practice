@@ -1,4 +1,6 @@
 #!/bin/bash
 
-files=$(ls -la) 
-echo "Printed all the files including hidden $files" > output.text
+person1=saikiran
+person2=samyuktha
+
+echo "$person1 hi how are you $person2"
