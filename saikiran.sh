@@ -7,6 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 
 DATE=$(date)
+LOGFILE="/tmp/saikiran-logs"
 
 VALIDATE() {
     if [ $1 -ne 0 ]
@@ -26,5 +27,8 @@ else
     echo -e "$Y Script started executing at $DATE $N"
 fi
 
-yum install git -y
+yum install git -y &>> $LOGFILE
 VALIDATE $? "Installing git"
+
+yum install mysql -y $>> $LOGFILE
+VALIDATE $? "Installing mysql"
