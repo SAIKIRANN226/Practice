@@ -1,11 +1,11 @@
 #!/bin/bash
 
-FRUITS=("Apple" "Banana" "Mango")
+number=$1
 
-echo "First value: ${FRUITS[0]}"
-
-echo "Second value: ${FRUITS[1]}"
-
-echo "Second value: ${FRUITS[2]}"
-
-echo "All Fruits: ${FRUITS[#]}"
+if [ $number -gt 100 ]
+then 
+    echo "Given number is greater than 100"
+    exit 1
+else
+    echo "Given number is lessthan 100"
+fi 
