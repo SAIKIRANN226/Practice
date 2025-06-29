@@ -7,7 +7,8 @@ Y="\e[33m"
 N="\e[0m"
 
 DATE=$(date)
-exec $> /tmp/saikiran.sh-Saikiran-logs 2>&1
+exec > ~/saikiran-logs.txt 2>&1
+
 
 VALIDATE() {
     if [ $1 -ne 0 ]
