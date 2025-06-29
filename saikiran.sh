@@ -31,10 +31,10 @@ fi
 
 for package in $@
 do 
-    yum list installed $software -y $>> $LOGFILE
+    yum list installed $software -y
     if [ $? -ne 0 ]
     then 
-        yum install $software -y $>> $LOGFILE
+        yum install $software -y
         VALIDATE $? "Installing $software"
     else
         echo -e "$software is already installed so ....$Y SKIPPING $N"
