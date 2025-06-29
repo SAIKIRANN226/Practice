@@ -6,30 +6,37 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+DATE=$(date)
+LOGFILE="/tmp/$0-Saikiran-logs"
+
 VALIDATE() {
     if [ $1 -ne 0 ]
     then 
-        echo -e "$2.....$R FAILED $N"
-        exit 1
+        echo -e "$2......$R FAILED $N"
+        exit 23
     else
-        echo -e "$2.....$G SUCCESS $N"
+        echo -e "$2......$G SUCCESS $N"
     fi
 }
+
 
 if [ $ID -ne 0 ]
 then 
     echo -e "$R ERROR:: Please run the script with root user $N"
-    exit 1
+    exit 23
 else
     echo -e "$Y Script started executing at $DATE $N"
-fi 
+fi
 
 
-yum install mysql -y > output.text
-
-VALIDATE $? "Installing mysql"
-
-yum install postfix -y > output.text
-
-VALIDATE $? "Installing postfix"
-
+for package in $@
+do 
+    yum list installed $software -y $>> $LOGFILE
+    if [ $? -ne 0 ]
+    then 
+        yum install $software -y $>> $LOGFILE
+        VALIDATE $? "Installing $software"
+    else
+        echo -e "$software is already installed so ....$Y SKIPPING $N"
+    fi 
+done
