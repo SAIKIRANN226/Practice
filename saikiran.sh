@@ -8,6 +8,7 @@ N="\e[0m"
 
 DATE=$(date)
 LOGFILE="/tmp/$0-Saikiran-logs"
+exec $>$LOGFILE
 
 VALIDATE() {
     if [ $1 -ne 0 ]
@@ -31,10 +32,10 @@ fi
 
 for package in $@
 do 
-    yum list installed $package &>> $LOGFILE
+    yum list installed $package
     if [ $? -ne 0 ]
     then 
-        yum install $package -y &>> $LOGFILE
+        yum install $package -y
         VALIDATE $? "Installing $package"
     else
         echo -e "$package is already installed so ....$Y SKIPPING $N"
