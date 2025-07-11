@@ -1,25 +1,18 @@
-variable "ami_id" {
-  type = string 
-  default = "ami-0b4f379183e5706b9"
-}
-
-variable "instance_name" {
-  type = string 
-  default = "t3.small"
-}
-
-variable "tags" {
+variable "instance_names" {
   type = map 
   default = {
-    Name = "Msk_isntance"
-    Component = "web"
-    Terraform = "true"
-    Environment = "dev"
-    Project = "roboshop"
+    mongodb = "t2.micro"
+    web = "t2.small"
+    catalogue = "t2.small"
   }
 }
 
-variable "cidr_blocks" {
-  type = list 
-  default = ["0.0.0.0/0"]
+variable "zone_id" {
+  type = string 
+  default = "Z03123921NOU39UU26DXY"
+}
+
+variable "domain_name" {
+  type = string 
+  default = "megacitysai.fun"
 }
