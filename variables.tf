@@ -1,18 +1,37 @@
-variable "instance_names" {
+variable "common_tags" {
+    type = map 
+    default = {
+        Component = "web"
+        Terraform = "true"
+        Project = "roboshop"
+    }
+}
+
+variable "vpc_tags" {
   type = map 
   default = {
-    mongodb = "t2.micro"
-    web = "t2.small"
-    catalogue = "t2.small"
+    Name = "${Project}-VPC"
   }
 }
 
-variable "zone_id" {
-  type = string 
-  default = "Z03123921NOU39UU26DXY"
+variable "igw_tags" {
+  type = map 
+  default = {
+    Name = "${Project}-IGW"
+  }
 }
 
-variable "domain_name" {
-  type = string 
-  default = "megacitysai.fun"
+variable "public_subnets_tags" {
+  type = map 
+  default = {
+    Name = "${Project}-Public_subnets"
+  }
+}
+
+variable "public_subnets_cidr" {
+  type = list 
+  validation {
+    condition = (var.private_subnets_cidr) == 2
+    error_message = "Please provide the 2 valid subnets"
+  }
 }
