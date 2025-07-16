@@ -10,6 +10,10 @@ pipeline {
        name = 'saikiran'
     }
 
+    parameters {
+        string(name: 'PERSON', defaultValue: 'saikiran', description: 'hello saikiran how are you man ?')
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -31,6 +35,11 @@ pipeline {
                 sh """
                     echo "$name"
                 """
+            }
+        }
+        stage('testing parameters with string values') {
+            steps {
+                echo "${params.PERSON}"
             }
         }
     }
