@@ -5,8 +5,8 @@ pipeline {
         }
     }
     options {
-        disableConcurrentBuilds()
         ansiColor('xterm')
+        disableConcurrentBuilds()  
     }
     environment {
         variable = 'This is the environment variable iam testing in jenkins file'
