@@ -9,7 +9,7 @@ pipeline {
         ansiColor('xterm')
     }
     environment {
-        variable = 'This is the environment variable iam testing in the jenkins file'
+        variable = 'This is the environment variable iam testing in jenkins file'
     }
     stages {
         stage('build') {
