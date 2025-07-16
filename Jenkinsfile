@@ -36,12 +36,11 @@ pipeline {
     }
 
     post {
-        echo 'I will always say hello'
-    }
-    success {
-        echo 'This will run if pipeline is success'
-    }
-    failure {
-        echo 'This will run if pipeline is failed'
+        always {
+            echo 'I will always say hello'
+        }
+        success {
+            echo 'This pipeline will run only when it successed'
+        }
     }
 }
