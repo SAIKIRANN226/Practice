@@ -23,7 +23,9 @@ pipeline {
         }
         stage('printing the env variable') {
             steps {
-                echo $name
+                sh """
+                    echo "$name"
+                """
             }
         }
     }
