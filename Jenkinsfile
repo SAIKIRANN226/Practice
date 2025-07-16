@@ -1,59 +1,47 @@
 pipeline {
-    agent any 
-
+    agent {
+        node {
+            label = 'saikiran'
+        }
+    }
     options {
-       disableConcurrentBuilds()
-       retry(2)
-       timeout(time: 1, unit: 'SECONDS')
+        disableConcurrentBuilds()
     }
     environment {
-       name = 'saikiran'
+        variable = 'This is the environment variable iam testing in the jenkins file'
     }
-
-    parameters {
-        string(name: 'PERSON', defaultValue: 'saikiran', description: 'hello saikiran how ?')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-    }
-
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building the code..'
+                echo 'Building the code...'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing the code..'
+                echo 'Testing the code...'
             }
         }
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                echo 'Deploying the code'
+                echo 'Deploying the code...'
             }
         }
-        stage('printing the env variable') {
+        stage('env') {
             steps {
                 sh """
                     echo "$name"
                 """
             }
         }
-        stage('testing parameters with string values') {
-            steps {
-                echo "${params.PERSON}"
-            }
-        }
     }
-    
+
     post {
-        always {
-            echo 'I will always say hello'
-        }
-        success {
-            echo 'This will run if pipeline is success'
-        }
-        failure {
-            echo 'This will run if pipeline fails'
-        }
+        echo 'I will always say hello'
+    }
+    success {
+        echo 'This will run if pipeline is success'
+    }
+    failure {
+        echo 'This will run if pipeline is failed'
     }
 }
