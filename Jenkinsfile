@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-            label = 'saikiran'
+            label 'saikiran'
         }
     }
     options {
