@@ -29,7 +29,7 @@ pipeline {
         stage('env') {
             steps {
                 sh """
-                    echo "$name"
+                    echo "$variable"
                 """
             }
         }
