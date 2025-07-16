@@ -1,6 +1,11 @@
 pipeline {
     agent any 
 
+    options {
+       disableConcurrentBuilds()
+       retry(2)
+       timeout(time: 1, unit: 'SECONDS')
+    }
     environment {
        name = 'saikiran'
     }
