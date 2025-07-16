@@ -2,9 +2,7 @@ pipeline {
     agent any 
 
     environment {
-        sh """
-            env
-        """
+       name = 'saikiran'
     }
 
     stages {
@@ -21,6 +19,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the code'
+            }
+        }
+        stage('printing the env variable') {
+            steps {
+                echo $name
             }
         }
     }
