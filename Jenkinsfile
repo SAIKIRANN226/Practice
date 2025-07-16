@@ -11,7 +11,7 @@ pipeline {
     }
 
     parameters {
-        string(name: 'PERSON', defaultValue: 'saikiran', description: 'hello saikiran how are you man ?')
+        string(name: 'PERSON', defaultValue: 'saikiran', description: 'hello saikiran how are you ?')
         choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
     }
 
