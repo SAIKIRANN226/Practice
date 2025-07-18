@@ -26,16 +26,16 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            echo 'I will always say hello'
+        }
+        success {
+            echo 'This will run if pipeline success'
+        }
+        failure {
+            echo 'This will run if pipeline fails'
+        }
+    }
 }
 
-post {
-    always {
-        echo 'I will always say hello'
-    }
-    success {
-        echo 'This will run if pipeline success'
-    }
-    failure {
-        echo 'This will run if pipeline fails'
-    }
-}
