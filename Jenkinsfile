@@ -1,19 +1,16 @@
 pipeline {
-    agent {
-        node {
-            label 'saikiran'
-        }
+    agent any
+
+    environment {
+        name = 'This section is to test environment nothing but like key-value pair'
     }
     options {
-        ansiColor('xterm')
-        //disableConcurrentBuilds()
-        disableConcurrentBuilds(abortPrevious: true)  
+        disableConcurrentBuilds()
+        timeout(time: 5, unit: 'SECONDS')
     }
-    environment {
-        variable = 'This is the environment variable iam testing in jenkins file'
-    }
+
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
                 echo 'Building the code...'
             }
@@ -23,26 +20,22 @@ pipeline {
                 echo 'Testing the code...'
             }
         }
-        stage('deploy') {
+        stage('Deploy') {
             steps {
                 echo 'Deploying the code...'
             }
         }
-        stage('env') {
-            steps {
-                sh """
-                    echo "$variable"
-                """
-            }
-        }
     }
+}
 
-    post {
-        always {
-            echo 'I will always say hello'
-        }
-        success {
-            echo 'This pipeline will run only when it successed'
-        }
+post {
+    always {
+        echo 'I will always say hello'
+    }
+    success {
+        echo 'This will run if pipeline success'
+    }
+    failure {
+        echo 'This will run if pipeline fails'
     }
 }
