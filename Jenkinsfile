@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'saikiran-agent'
+        }
+    }
 
     environment {
         name = 'This section is to test environment nothing but like key-value pair'
@@ -40,7 +44,7 @@ pipeline {
             echo 'This will run if pipeline success'
         }
         failure {
-            echo 'This will run if pipeline fail'
+            echo 'This will run if pipeline fails'
         }
     }
 }
