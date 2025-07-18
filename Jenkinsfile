@@ -40,7 +40,7 @@ pipeline {
             echo 'This will run if pipeline success'
         }
         failure {
-            echo 'This will run if pipeline fails'
+            echo 'This will run if pipeline fail'
         }
     }
 }
