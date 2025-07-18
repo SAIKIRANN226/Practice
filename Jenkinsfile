@@ -9,6 +9,9 @@ pipeline {
         timeout(time: 30, unit: 'SECONDS')
         ansiColor('xterm')
     }
+    parameters {
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+    }
 
     stages {
         stage('Build') {
@@ -24,6 +27,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the code...'
+            }
+        }
+        stage('Env') {
+            echo "$name"
+        }
+        stage('Parameters') {
+            steps {
+                echo "name: ${params.CHOICE}"
             }
         }
     }
