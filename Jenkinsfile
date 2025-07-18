@@ -30,7 +30,9 @@ pipeline {
             }
         }
         stage('Environment') {
-            echo "$name"
+            steps {
+                echo "$name"
+            }
         }
         stage('Parameters') {
             steps {
