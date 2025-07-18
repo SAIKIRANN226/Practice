@@ -29,7 +29,7 @@ pipeline {
                 echo 'Deploying the code...'
             }
         }
-        stage('Env') {
+        stage('Environment') {
             echo "$name"
         }
         stage('Parameters') {
