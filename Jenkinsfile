@@ -7,6 +7,7 @@ pipeline {
     options {
         disableConcurrentBuilds()
         timeout(time: 30, unit: 'SECONDS')
+        ansiColor('xterm')
     }
 
     stages {
