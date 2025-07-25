@@ -1,9 +1,7 @@
 #!/bin/bash
 
-DATE=$(date)
+echo "Please enter your Username:: "
+read -s Username
 
-echo "Todays date is $DATE"
-
-Files=$(ls -la)
-
-echo "Files which are including hidden is $Files"
+echo "Please enter your Password:: "
+read -s Password
