@@ -1,7 +1,9 @@
 #!/bin/bash
 
-person1=$1
-person2=$2
+DATE=$(date)
 
-echo "hello $person1 how are you ?"
-echo "hi $person2 iam good how about you ?"
+echo "Todays date is $DATE"
+
+Files=$(ls -la)
+
+echo "Files which are including hidden is $Files"
