@@ -7,6 +7,8 @@ Y="\e[33m"
 N="\e[0m"
 DATE=$(date)
 
+LOGFILE="/tmp/$0.log"
+
 VALIDATE() {
     if [ $1 -ne 0 ]
     then 
@@ -26,10 +28,10 @@ else
 fi 
 
 
-yum install mysql -y 
+yum install mysql -y &>> $LOGFILE
 
 VALIDATE $? "Installing mysql"
 
-yum install git -y
+yum install git -y &>> $LOGFILE
 
 VALIDATE $? "Installing git"
