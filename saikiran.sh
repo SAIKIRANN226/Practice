@@ -1,9 +1,15 @@
 #!/bin/bash
 
-fruits=("mango" "banana" "apple" "grapes" "dragon")
+Number=$1
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
-echo "Script name is $0"
-
-echo "the value of fruits is ${fruits[0]}"
-echo "the value of fruits is ${fruits[1]}"
-echo "the value of fruits is ${fruits[@]}"
+if [ $Number -gt 100 ]
+then 
+    echo -e "$Y Given number is greater than 100"
+    exit 1
+else
+    echo "$R Given number is lessthan 100"
+fi 
