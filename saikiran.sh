@@ -1,7 +1,8 @@
 #!/bin/bash
 
-echo "Please enter your Username:: "
-Username
+fruits=("mango", "banana", "apple", "grapes", "dragon")
 
-echo "Please enter your Password:: "
-read -s Password
+echo "the value of fruits is ${fruits[0]}"
+echo "the value of fruits is ${fruits[1]}"
+echo "the value of fruits is ${fruits[@]}"
+echo "the value of fruits is ${fruits[#]}"
