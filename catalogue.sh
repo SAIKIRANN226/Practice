@@ -79,7 +79,7 @@ systemctl enable catalogue &>> $LOGFILE
 
 VALIDATE $? "Enabling catalogue"
 
-cp /home/centos/mongodb.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/centos/Practice/mongodb.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
 VALIDATE $? "Copied mongodb.repo file"
 
