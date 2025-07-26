@@ -27,7 +27,7 @@ else
     echo -e "$Y Script started executing at $DATE $N"
 fi 
 
-dnf dnf install remi-release-8.rpm --skip-broken -y &>> $LOGFILE
+dnf sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.5-2.el8.remi.noarch.rpm -y &>> $LOGFILE
 
 VALIDATE $? "Installing repo file"
 
