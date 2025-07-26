@@ -27,7 +27,7 @@ else
     echo -e "$Y Script started executing at $DATE $N"
 fi 
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/centos/mongodb.repo /etc/yum.repos.d/mongodb.repo &>> $LOGFILE
 
 VALIDATE $? "Copied mongodb file"
 
