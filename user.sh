@@ -67,7 +67,7 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "Installing dependencies"
 
-cp user.service /etc/systemd/system/user.service &>> $LOGFILE
+cp /home/centos/Practice/user.service /etc/systemd/system/user.service &>> $LOGFILE
 
 VALIDATE $? "Copied user.service file"
 
