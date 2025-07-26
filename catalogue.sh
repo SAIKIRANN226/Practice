@@ -67,7 +67,7 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "Downloading dependencies"
 
-cp /home/centos/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/centos/Practice/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
 
 VALIDATE $? "Copied catalogie.service file to system"
 
