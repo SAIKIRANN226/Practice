@@ -67,7 +67,7 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "Installing dependencies"
 
-cp /home/centos/Practice/cart.service /etc/systemd/system/cart.service &>> $LOGFILEa
+cp cart.service /etc/systemd/system/cart.service &>> $LOGFILEa
 
 VALIDATE $? "Copied cart.service file"
 
