@@ -27,7 +27,7 @@ else
     echo -e "$Y Script started executing at $DATE $N"
 fi 
 
-dnf dnf install remi-release-8.rpm --nobest -y &>> $LOGFILE
+dnf dnf install remi-release-8.rpm --skip-broken &>> $LOGFILE
 
 VALIDATE $? "Installing repo file"
 
