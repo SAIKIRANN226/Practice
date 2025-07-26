@@ -67,18 +67,18 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "Installing dependencies"
 
-cp cart.service /etc/systemd/system/cart.service &>> $LOGFILEa
+cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>> $LOGFILE
 
 VALIDATE $? "Copied cart.service file"
 
-systemctl daemon-reload &>> $LOGFILEa
+systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "Daemon reloaded"
 
-systemctl enable cart &>> $LOGFILEa
+systemctl enable cart &>> $LOGFILE
 
 VALIDATE $? "Eable cart"
 
-systemctl start cart &>> $LOGFILEa
+systemctl start cart &>> $LOGFILE
 
 VALIDATE $? "Starting cart"
