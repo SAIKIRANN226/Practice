@@ -1,11 +1,6 @@
 resource "aws_instance" "web" {
-  ami = "ami-0b4f379183e5706b9"
-  instance_type = "t2.micro"
-  tags = {
-    Name = "Saikiran_instance"
-  }
-}
-
-provider "local-exec" {
-  command = "echo The Public_ip of the Server is : ${self.public_ip}"
+	ami = var.ami_id
+	instance_type = var.instance_names == "web" ? "t2.micro" : "t3.small"
+	vpc_security_group_ids = [ aws_security_group.saikiran.id ]
+	tags = var.tags
 }
