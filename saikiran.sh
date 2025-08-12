@@ -29,7 +29,7 @@ fi
 
 for package in $@ 
 do 
-    yum list $package -y &>> $LOGFILE
+    yum list installed $package -y &>> $LOGFILE
     if [ $? -ne 0 ]
     then 
         yum install $package -y &>> $LOGFILE
