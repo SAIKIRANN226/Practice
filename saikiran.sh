@@ -1,11 +1,28 @@
 #!/bin/bash
 
-number=$1
+ID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
-if [ $number -gt 100 ]
+DATE=$(date)
+
+if [ $ID -ne 0 ]
 then 
-    echo "Given number is greaterthan 100"
+    echo -e "$R ERROR:: Please run the script with root user $N"
+    exit 1
+else
+    echo -e "$Y Script started executing at $DATE $N"
+fi 
+
+
+yum install mysql -y
+
+if [ $? -ne 0 ]
+then 
+    echo -e "$R Installing mysql is failed $N"
     exit 1
 else 
-    echo "Given number is lessthan 100"
-fi 
+    echo -e "$G Installing mysql is success $N"
+fi
