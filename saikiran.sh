@@ -8,6 +8,16 @@ N="\e[0m"
 
 DATE=$(date)
 
+VALIDATE() {
+    if [ $1 -ne 0 ]
+    then 
+        echo -e "$2.....$R FAILED $N"
+        exit 1
+    else
+        echo -e "$2.....$G SUCCESS $N"
+    fi 
+}
+
 if [ $ID -ne 0 ]
 then 
     echo -e "$R ERROR:: Please run the script with root user $N"
@@ -19,10 +29,8 @@ fi
 
 yum install mysql -y
 
-if [ $? -ne 0 ]
-then 
-    echo -e "$R Installing mysql is failed $N"
-    exit 1
-else 
-    echo -e "$G Installing mysql is success $N"
-fi
+VALIDATE $? "Installing mysql"
+
+yum install nginx -y 
+
+VALIDATE $? "Installing nginx"
