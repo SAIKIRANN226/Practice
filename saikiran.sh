@@ -7,6 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 
 DATE=$(date)
+LOGFILE="/tmp/msk-logs"
 
 VALIDATE() {
     if [ $1 -ne 0 ]
@@ -27,10 +28,10 @@ else
 fi 
 
 
-yum install mysql -y
+yum install mysql -y &>> $LOGFILE
 
 VALIDATE $? "Installing mysql"
 
-yum install nginx -y 
+yum install nginx -y &>> $LOGFILE
 
 VALIDATE $? "Installing nginx"
