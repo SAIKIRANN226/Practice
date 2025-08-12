@@ -1,37 +1,6 @@
 #!/bin/bash
 
-ID=$(id -u)
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
-
-DATE=$(date)
-LOGFILE="/tmp/msk-logs"
-
-VALIDATE() {
-    if [ $1 -ne 0 ]
-    then 
-        echo -e "$2.....$R FAILED $N"
-        exit 1
-    else
-        echo -e "$2.....$G SUCCESS $N"
-    fi 
-}
-
-if [ $ID -ne 0 ]
-then 
-    echo -e "$R ERROR:: Please run the script with root user $N"
-    exit 1
-else
-    echo -e "$Y Script started executing at $DATE $N"
-fi 
-
-
-yum install mysql -y &>> $LOGFILE
-
-VALIDATE $? "Installing mysql"
-
-yum install nginx -y &>> $LOGFILE
-
-VALIDATE $? "Installing nginx"
+for i in {1...1000}
+do 
+    echo "Number $i"
+done 
