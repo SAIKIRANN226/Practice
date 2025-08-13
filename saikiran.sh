@@ -16,4 +16,4 @@ fi
 
 FILES_TO_DELETE=$(find $SOURCE_DIR -type d -mtime +7 -name "preethi")
 
-rmdir 
+rmdir -p
