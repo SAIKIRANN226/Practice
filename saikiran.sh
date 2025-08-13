@@ -1,18 +1,22 @@
-#!/bin/bash
+#!/bin/bash 
 
-AMI="ami-0b4f379183e5706b9"
-SG="sg-062184d660bab16ba"
-INSTANCES=("mongodb", "shipping", "web", "payment")
-ZONE_ID="Z03123921NOU39UU26DXY"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
-for i in "${INSTANCES[@]}"
+source_dir="/tmp/saikiran-logss"
+
+if [ ! -d $source_dir ]
+then 
+    echo -e "$R Source directory $source_dir does not exists $N"
+    exit 1
+fi 
+
+files_to_delete=$(find $source_dir -type f -mtime +7 -name "*.log")
+
+while IFS= read -r line 
 do 
-    if [ $i == "mongodb" ] || [ $i == "shipping" ]
-    then 
-        INSTANCE_TYPE="t3.small"
-    else
-        INSTANCE_TYPE="t2.micro"
-    fi 
-    IP_ADDRESS=$(aws ec2 run-instances --image-id $AMI --instance-type $INSTANCE_TYPE --security-group-ids $SG --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query 'Instances[0].PrivateIpAddress' --output text)
-    echo "PublicIP of the $i: $IP_ADDRESS"
-done 
+    echo -e "$Y Deleting file:: $line"
+    rm -rf $line
+done <<< $files_to_delete
