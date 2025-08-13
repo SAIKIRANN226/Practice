@@ -1,20 +1,23 @@
 #!/bin/bash
 
-ID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-echo "Fetching the list of s3 buckets..."
+SOURCE_DIR="/tmp/saikiran-logs"
 
-aws sts get-caller-identity >/dev/null 2>&1
-if [ $? -ne 0 ]
+if [ ! -d $SOURCE_DIR ]
 then 
-    echo -e "$R AWS_CLI is not configured properly. Run aws configure first $N"
+    echo -e "$R Source directory $SOURCE_DIR does not exits $N"
     exit 1
 fi 
 
-aws s3 ls 
 
-echo "Done"
+FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime +14 -name "*.log")
+
+while IFS= read -r line 
+do 
+    echo "Deleting line: $line
+    rm -rf $line 
+done <<< $FILES_TO_DELETE
