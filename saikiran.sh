@@ -5,7 +5,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-source_dir="/tmp/saikiran-logss"
+source_dir="/tmp/saikiran-logs"
 
 if [ ! -d $source_dir ]
 then 
