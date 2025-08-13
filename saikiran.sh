@@ -7,7 +7,7 @@ N="\e[0m"
 
 echo -e "$Y Fetching list of all S3 buckets... $N"
 
-aws sts get-caller-identity >/dev/null 2>&1
+aws sts get-caller-identity
 
 if [ $? -ne 0 ]
 then 
