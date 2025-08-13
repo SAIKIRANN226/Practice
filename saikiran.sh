@@ -7,7 +7,7 @@ ZONE_ID="Z03123921NOU39UU26DXY"
 
 for i in "${INSTANCES[@]}"
 do 
-    if [ $i == "mongodb"] || [ $i == "shipping"]
+    if [ $i == "mongodb" ] || [ $i == "shipping" ]
     then 
         INSTANCE_TYPE="t3.small"
     else
