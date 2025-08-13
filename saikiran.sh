@@ -15,9 +15,4 @@ fi
 
 
 FILES_TO_DELETE=$(find $SOURCE_DIR -type d -mtime +7 -name "preethi")
-
-while IFS= read -r line 
-do 
-    echo "Deleting file: $line"
-    rm -rf $line 
-done <<< $FILES_TO_DELETE
+ rmdir -r
