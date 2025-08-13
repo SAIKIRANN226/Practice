@@ -14,7 +14,7 @@ then
 fi 
 
 
-FILES_TO_DELETE=$(find $SOURCE_DIR -type f -mtime +7 -name "*.log")
+FILES_TO_DELETE=$(find $SOURCE_DIR -type d -mtime +7 -name "preethi")
 
 while IFS= read -r line 
 do 
