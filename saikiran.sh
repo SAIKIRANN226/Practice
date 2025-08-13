@@ -1,22 +1,20 @@
-#!/bin/bash 
+#!/bin/bash
 
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-DISK_USAGE=$(df -hT | grep -vE 'tmp|File')
-DISK_THRESHOLD=1
-Message=""
+echo -e "$Y Fetching list of all S3 buckets... $N"
 
-while IFS= read -r line 
-do 
-    usage=$(echo $line | awk '{print $6F}' | cut -d % -f1)
-    partition=$(echo $line | awk '{print $1F}')
-    if [ $usage -ge $DISK_THRESHOLD ]
-    then 
-        message+="High disk usage on $partition: $usage <br>"
-    fi 
+aws sts get-caller-identity >/dev/null 2>&1
 
-    echo "Message:: $message"
-done <<< $DISK_USAGE
+if [ $? -ne 0 ]
+then 
+    echo -e "$R AWS_CLI is not configured properly, first run aws configure $N"
+    exit 1
+fi 
+
+aws s3 ls 
+
+echo -e "$G DONE $N"
