@@ -5,18 +5,18 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-source_dir="/tmp/saikiran-logs"
-
-if [ ! -d $source_dir ]
-then 
-    echo -e "$R Source directory $source_dir does not exists $N"
-    exit 1
-fi 
-
-files_to_delete=$(find $source_dir -type f -mtime +7 -name "*.log")
+DISK_USAGE=$(df -hT | grep -vE 'tmp|File')
+DISK_THRESHOLD=1
+Message=""
 
 while IFS= read -r line 
 do 
-    echo -e "$Y Deleting file:: $line"
-    rm -rf $line
-done <<< $files_to_delete
+    usage=$(echo $line | awk '{print 6F}')
+    partition=$(echo $line | awk '{print 1F}')
+    if [ $usage -ge $DISK_THRESHOLD ]
+    then 
+        message+="High disk usage on $partition: $usage <br>"
+    fi 
+
+    echo "Message:: $message"
+done <<< $DISK_USAGE
