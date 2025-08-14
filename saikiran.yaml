@@ -1,0 +1,12 @@
+- name: Installing nginx and running on remote server
+  become: yes
+  hosts: web
+  tasks:
+  - name: Installing nginx
+    ansible.builtin.dnf:
+        name: nginx 
+        state: present 
+  - name: Running nginx
+    ansible.builtin.service:
+        name: nginx 
+        state: started
