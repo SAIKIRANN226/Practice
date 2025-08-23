@@ -1,18 +1,11 @@
-- name: conditions example 
+- name: Loops 
   hosts: localhost
-  become: yes 
   tasks:
-  - name: Roboshop user exist or not ?
-    ansible.builtin.command: id roboshop 
-    register: user 
-    ignore_errors: true 
-  - name: Print the output of the user 
+  - name: Looping names 
     ansible.builtin.debug:
-      msg: "The user is {{user}}"
-  - name: Checking the exit status of the user 
-    ansible.builtin.debug:
-      msg: "Exist status of the user is {{user.rc}}"
-  - name: Creating roboshop user 
-    ansible.builtin.user: 
-      name: roboshop 
-    when: user.rc!=0
+      msg: "Hello {{item}}"
+    loop: 
+    - Ramesh 
+    - Saikiran
+    - Mani
+    - Samyuktha
