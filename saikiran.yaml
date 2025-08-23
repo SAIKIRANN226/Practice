@@ -1,11 +1,11 @@
 - name: Loops 
   hosts: localhost
+  become: yes 
   tasks:
-  - name: Looping names 
-    ansible.builtin.debug:
-      msg: "Hello {{item}}"
-    loop: 
-    - Ramesh 
-    - Saikiran
-    - Mani
-    - Samyuktha
+  - name: Installing packages
+    ansible.builtin.package:
+      name: "{{item.name}}"
+      state: "{{item.state}}"
+    loop:
+    - {name: 'nginx', state: 'present'}
+    - {name: 'mysql', state: 'present'}
