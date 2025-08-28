@@ -8,7 +8,7 @@ N="\e[0m"
 
 DATE=$(date)
 
-for i in {1..10000}
+for i in {1..1000}
 do 
   echo "Number $i"
 done 
