@@ -8,6 +8,15 @@ N="\e[0m"
 
 DATE=$(date)
 
+VALIDATE() {
+  if [ $1 -ne 0 ]
+  then 
+    echo -e "$2....$R FAILED $N"
+  else 
+    echo -e "$2....$G SUCCESS $N"
+  fi 
+}
+
 if [ $ID -ne 0 ]
 then 
   echo -e "$R ERROR:: Please run the script with root user $N"
@@ -33,3 +42,9 @@ then
 else 
   echo -e "$G Installing mysql is success $N"
 fi 
+
+yum install net-tools -y > /tmp/sai.txt
+VALIDATE $? "Installing net-tools"
+
+yum install postfix -y
+VALIDATE $? "Installing postfix" /tmp/msk.txt
