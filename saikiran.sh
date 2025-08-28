@@ -8,43 +8,7 @@ N="\e[0m"
 
 DATE=$(date)
 
-VALIDATE() {
-  if [ $1 -ne 0 ]
-  then 
-    echo -e "$2....$R FAILED $N"
-  else 
-    echo -e "$2....$G SUCCESS $N"
-  fi 
-}
-
-if [ $ID -ne 0 ]
-then 
-  echo -e "$R ERROR:: Please run the script with root user $N"
-  exit 1
-else
-  echo -e "$Y Script started executing at $DATE $N"
-fi 
-
-yum install nginx -y 
-if [ $? -ne 0 ]
-then 
-  echo -e "$R Installing nginx is failed $N"
-  exit 1
-else
-  echo -e "$G Installing nginx is success $N"
-fi
-
-yum install mysql -y > /tmp/saikiran.txt
-if [ $? -ne 0 ]
-then 
-  echo -e "$R Installing mysql is failed $N"
-  exit 1
-else 
-  echo -e "$G Installing mysql is success $N"
-fi 
-
-yum install net-tools -y > /tmp/sai.txt
-VALIDATE $? "Installing net-tools"
-
-yum install postfix -y
-VALIDATE $? "Installing postfix" /tmp/msk.txt
+for i in {1..10000}
+do 
+  echo "Number $i"
+done 
