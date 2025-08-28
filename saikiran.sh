@@ -1,8 +1,16 @@
-Number=$1
+#!/bin/bash
 
-if [ $Number -gt 100 ]
+ID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
+yum install nginx -y 
+if [ $? -ne 0 ]
 then 
-  echo "Given number is greater than 100"
-else 
-  echo "Given number is lessthan 100"
+  echo -e "$R Installing nginx is failed $N"
+  exit 1
+else
+  echo -e "$G Installing nginx is success $N"
 fi
