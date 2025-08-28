@@ -5,3 +5,4 @@ then
   echo "Given number is greater than 100"
 else 
   echo "Given number is lessthan 100"
+fi
