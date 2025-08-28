@@ -24,3 +24,12 @@ then
 else
   echo -e "$G Installing nginx is success $N"
 fi
+
+yum install mysql -y > /tmp/saikiran.txt
+if [ $? -ne 0 ]
+then 
+  echo -e "$R Installing mysql is failed $N"
+  exit 1
+else 
+  echo -e "$G Installing mysql is success $N"
+fi 
