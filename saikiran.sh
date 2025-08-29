@@ -9,7 +9,7 @@ SOURCE_DIR="/tmp/sai.log"
 
 if [ ! -d $SOURCE_DIR ]
 then 
-  echo -e "$R $SOURCE_DIR does not exist $N"
+  echo -e "$R SOURCE_DIRECTORY: $SOURCE_DIR does not exist $N"
   exit 1
 fi 
 
