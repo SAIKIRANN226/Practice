@@ -10,4 +10,6 @@ File="/etc/passwd"
 while IFS= read -r line 
 do 
     echo -e "$Y $line $N"
+    cd /etc/passwd
+    echo -e "$Y $line $N"
 done <<< $File
